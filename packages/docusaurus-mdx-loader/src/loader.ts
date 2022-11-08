@@ -63,7 +63,7 @@ export type MDXOptions = {
 };
 
 export type Options = Partial<MDXOptions> & {
-  markdownConfig: MarkdownConfig;
+  markdownConfig?: MarkdownConfig;
   staticDirs: string[];
   siteDir: string;
   isMDXPartial?: (filePath: string) => boolean;
@@ -173,7 +173,7 @@ export async function mdxLoader(
       ...(reqOptions.beforeDefaultRemarkPlugins ?? []),
       ...getAdmonitionsPlugins(reqOptions.admonitions ?? false),
       ...DEFAULT_OPTIONS.remarkPlugins,
-      ...(reqOptions.markdownConfig.mermaid ? [mermaid] : []),
+      ...(reqOptions.markdownConfig?.mermaid ? [mermaid] : []),
       [
         transformImage,
         {
